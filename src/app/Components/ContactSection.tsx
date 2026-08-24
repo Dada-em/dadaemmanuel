@@ -32,7 +32,6 @@ const contactMethods = [
 
 const socialLinks = [
   { label: "GitHub", href: "https://github.com/Dada-em" },
-  { label: "Portfolio", href: "https://daa-ddf.netlify.app" },
 ];
 
 export default function ContactSection() {
