@@ -31,7 +31,7 @@ export default function Footer() {
               Ready to build something together?
             </h3>
             <p className="text-[13px] font-light text-[#F7F2EC]/50 leading-relaxed">
-              Open to full-time roles and contract work — let's talk.
+              Open to full-time roles and contract work, let's talk.
             </p>
           </div>
           <Link

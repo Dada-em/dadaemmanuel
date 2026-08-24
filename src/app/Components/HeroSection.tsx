@@ -112,7 +112,7 @@ export default function HeroSection() {
             <motion.div variants={item} className="flex items-center gap-3 mb-6 sm:mb-7">
               <div className="w-10 h-px bg-[#5B9BD5]" />
               <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#5B9BD5]">
-                Front-End Engineer · Lagos, Nigeria
+                Front-End Engineer - Lagos, Nigeria
               </span>
             </motion.div>
 
@@ -129,7 +129,7 @@ export default function HeroSection() {
               className="text-[16px] sm:text-[17px] font-light text-stone-600 leading-relaxed max-w-lg mb-10"
             >
               Lead Frontend Developer shipping production React &amp; Next.js
-              applications — from shared design systems to real-time features,
+              applications from shared design systems to real-time features,
               with the craft, accessibility, and test coverage to back it up.
             </motion.p>
 
@@ -147,7 +147,7 @@ export default function HeroSection() {
                 View My Work
               </motion.a>
               <motion.a
-                href="https://daa-ddf.netlify.app"
+                href="https://drive.google.com/file/d/1LV_FzWnbKsOEGh0osMSiqEqlPRu-ealZ/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ x: 4 }}

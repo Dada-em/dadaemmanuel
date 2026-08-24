@@ -5,8 +5,8 @@ import Image from "next/image";
 import { motion, Variants } from "motion/react";
 
 const credentials = [
-  { n: "01", text: "B.Sc Computer Science, CGPA 4.05/5.0 — Redeemer's University, 2025" },
-  { n: "02", text: "Captain, CS Basketball Team — Redeemer's University (2023–2025)" },
+  { n: "01", text: "B.Sc Computer Science, CGPA 4.05/5.0: Redeemer's University, 2025" },
+  { n: "02", text: "Captain, CS Basketball Team: Redeemer's University (2023-2025)" },
   { n: "03", text: "Volunteer mentor, university coding workshops & Nigeria's 3MTT program" },
 ];
 
@@ -93,7 +93,7 @@ export default function AboutSection() {
               <p className="font-sans text-[54px] font-semibold text-stone-900 leading-none">
                 4.05<span className="text-[26px] text-[#5B9BD5]">/5.0</span>
               </p>
-              <p className="text-[12px] text-stone-500 tracking-wide mt-2">Graduating CGPA — Computer Science</p>
+              <p className="text-[12px] text-stone-500 tracking-wide mt-2">Graduating CGPA - Computer Science</p>
             </div>
             <div className="h-1 bg-stone-100 rounded-full mt-5 overflow-hidden">
               <div className="h-full w-[81%] bg-[#5B9BD5] rounded-full" />

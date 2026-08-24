@@ -20,7 +20,7 @@ const capabilities = [
     title: "Front-End Architecture (Next.js / React)",
     shortDesc: "Server/client separation built for performance and SEO.",
     fullDesc:
-      "Architecting production platforms on Next.js App Router with deliberate server/client boundaries — optimizing for both performance and SEO from the ground up, not bolted on after launch. Comfortable working across the stack with Node.js, Express, and PostgreSQL when the frontend needs backend context.",
+      "Architecting production platforms on Next.js App Router with deliberate server/client boundaries optimizing for both performance and SEO from the ground up, not bolted on after launch. Comfortable working across the stack with Node.js, Express, and PostgreSQL when the frontend needs backend context.",
     deliverables: ["Next.js App Router", "Server/Client Boundaries", "TypeScript", "REST API Integration"],
   },
   {
@@ -29,7 +29,7 @@ const capabilities = [
     title: "Real-Time & Interactive Features",
     shortDesc: "Live messaging, notifications, and stateful UI at scale.",
     fullDesc:
-      "Built a real-time messaging system using Socket.io and TanStack Query, including anonymous identity handling and encrypted-UI messaging patterns. This is where front-end and system design intersect — state has to stay correct, fast, and predictable even under live updates.",
+      "Built a real-time messaging system using Socket.io and TanStack Query, including anonymous identity handling and encrypted-UI messaging patterns. This is where front-end and system design intersect, state has to stay correct, fast, and predictable even under live updates.",
     deliverables: ["Socket.io Integration", "TanStack Query", "Optimistic UI", "State Synchronization"],
   },
   {
@@ -38,8 +38,8 @@ const capabilities = [
     title: "Testing & Quality",
     shortDesc: "End-to-end coverage for the flows that actually matter.",
     fullDesc:
-      "Wrote Playwright E2E tests covering critical user flows — lawyer search and filtering, core navigation, booking systems with real-time slot availability. Testing isn't an afterthought; it's what lets a small team ship confidently and catch regressions before users do.",
-    deliverables: ["Playwright E2E Tests", "Network Mocking", "Critical Flow Coverage", "Regression Prevention"],
+      "Wrote Vitest E2E tests covering critical user flows lawyer search and filtering, core navigation, booking systems with real-time slot availability. Testing isn't an afterthought; it's what lets a small team ship confidently and catch regressions before users do.",
+    deliverables: ["Vitest E2E Tests", "Network Mocking", "Critical Flow Coverage", "Regression Prevention"],
   },
   {
     id: "a11y",
@@ -47,7 +47,7 @@ const capabilities = [
     title: "Accessibility & Performance",
     shortDesc: "Interfaces that work for everyone, and load fast doing it.",
     fullDesc:
-      "Responsive, mobile-first, accessibility-conscious builds (a11y/WCAG) across every project — including a dark-themed, accessible EMR interface spanning three distinct user roles. Refactored and optimized frontend code across live products, improving load speed and cutting production bugs.",
+      "Responsive, mobile-first, accessibility-conscious builds (a11y/WCAG) across every project including a dark-themed, accessible EMR interface spanning three distinct user roles. Refactored and optimized frontend code across live products, improving load speed and cutting production bugs.",
     deliverables: ["WCAG Practices", "Mobile-First Design", "Performance Audits", "Bug Reduction"],
   },
 ];
@@ -83,7 +83,7 @@ export default function CapabilitiesSection() {
           </h2>
           <p className="font-sans text-[15px] sm:text-[16px] font-light text-stone-600 leading-[1.85]">
             Five things I actually do, day to day, across live products with
-            real users — not a services menu.
+            real users - not a services menu.
           </p>
         </motion.header>
 
