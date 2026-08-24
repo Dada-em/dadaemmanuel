@@ -174,8 +174,7 @@ export default function HeroSection() {
             transition={{ delay: 0.9, duration: 0.6 }}
           >
             {[
-              { num: "1+", label: "Years Leading Frontend Teams" },
-              { num: "4", label: "Live Products Shipped" },
+              { num: "4+", label: "Live Products Shipped" },
               { num: "6-Layer", label: "Verification System Architected" },
             ].map(({ num, label }) => (
               <div key={label}>
