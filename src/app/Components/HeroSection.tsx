@@ -2,6 +2,7 @@
 "use client";
 
 import { motion, type Variants } from "motion/react";
+import type { SiteContent } from "@/sanity/content";
 
 const container: Variants = {
   hidden: {},
@@ -68,7 +69,9 @@ function CodeBackdrop() {
   );
 }
 
-export default function HeroSection() {
+export default function HeroSection({ content }: { content: SiteContent }) {
+  const { hero } = content;
+
   return (
     <section
       id="home"
@@ -112,7 +115,7 @@ export default function HeroSection() {
             <motion.div variants={item} className="flex items-center gap-3 mb-6 sm:mb-7">
               <div className="w-10 h-px bg-[#5B9BD5]" />
               <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#5B9BD5]">
-                Front-End Engineer - Lagos, Nigeria
+                {hero.eyebrow}
               </span>
             </motion.div>
 
@@ -120,17 +123,16 @@ export default function HeroSection() {
               variants={item}
               className="font-sans text-[clamp(38px,7vw,64px)] font-semibold leading-[1.1] tracking-tight text-stone-900 mb-6"
             >
-              I build interfaces that feel{" "}
-              <span className="text-[#5B9BD5]">as good</span> as they work
+              {hero.headlinePrefix}{" "}
+              <span className="text-[#5B9BD5]">{hero.headlineAccent}</span>{" "}
+              {hero.headlineSuffix}
             </motion.h1>
 
             <motion.p
               variants={item}
               className="text-[16px] sm:text-[17px] font-light text-stone-600 leading-relaxed max-w-lg mb-10"
             >
-              Lead Frontend Developer shipping production React &amp; Next.js
-              applications from shared design systems to real-time features,
-              with the craft, accessibility, and test coverage to back it up.
+              {hero.description}
             </motion.p>
 
             <motion.div
@@ -144,21 +146,23 @@ export default function HeroSection() {
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className="text-[13px] font-semibold text-white bg-[#5B9BD5] px-7 py-3.5 rounded-full"
               >
-                View My Work
+                {hero.workLinkLabel}
               </motion.a>
-              <motion.a
-                href="https://drive.google.com/file/d/1LV_FzWnbKsOEGh0osMSiqEqlPRu-ealZ/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ x: 4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                className="text-[13px] font-semibold text-stone-700 hover:text-stone-900 flex items-center gap-2"
-              >
-                Download CV
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </motion.a>
+              {hero.cvUrl && (
+                <motion.a
+                  href={hero.cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                  className="text-[13px] font-semibold text-stone-700 hover:text-stone-900 flex items-center gap-2"
+                >
+                  {hero.cvLinkLabel}
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </motion.a>
+              )}
             </motion.div>
           </div>
         </motion.div>
@@ -173,12 +177,9 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.6 }}
           >
-            {[
-              { num: "4+", label: "Live Products Shipped" },
-              { num: "6-Layer", label: "Verification System Architected" },
-            ].map(({ num, label }) => (
+            {hero.stats.map(({ value, label }) => (
               <div key={label}>
-                <div className="text-2xl sm:text-3xl font-semibold text-stone-900">{num}</div>
+                <div className="text-2xl sm:text-3xl font-semibold text-stone-900">{value}</div>
                 <div className="text-[10px] tracking-[0.1em] uppercase text-stone-500 mt-1 max-w-[140px]">
                   {label}
                 </div>

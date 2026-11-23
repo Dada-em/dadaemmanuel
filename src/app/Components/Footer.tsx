@@ -3,17 +3,17 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import type { SiteContent } from "@/sanity/content";
 
 const navLinks = ["Home", "About", "Capabilities", "Projects", "Contact"];
-const capabilities = [
-  "Design Systems & Components",
-  "Front-End Architecture",
-  "Real-Time Features",
-  "Testing & Quality",
-  "Accessibility & Performance",
-];
 
-export default function Footer() {
+export default function Footer({ content }: { content: SiteContent }) {
+  const { capabilities, contact, footer, profile } = content;
+  const socialLinks = [
+    ...contact.socialLinks,
+    { label: "Email", href: `mailto:${contact.email}` },
+  ];
+
   return (
     <footer id="footer" className="bg-[#0F172A] border-t border-white/[.06] pt-16 sm:pt-20 pb-8">
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-14">
@@ -28,17 +28,17 @@ export default function Footer() {
         >
           <div>
             <h3 className="font-sans text-[24px] sm:text-[26px] font-semibold text-[#F7F2EC] mb-1.5">
-              Ready to build something together?
+              {footer.ctaTitle}
             </h3>
             <p className="text-[13px] font-light text-[#F7F2EC]/50 leading-relaxed">
-              Open to full-time roles and contract work, let's talk.
+              {footer.ctaDescription}
             </p>
           </div>
           <Link
             href="/#contact"
             className="flex items-center gap-2 bg-[#5B9BD5] text-white rounded-full px-7 py-3.5 text-[12px] font-semibold tracking-wide whitespace-nowrap hover:bg-[#3A78B5] transition-colors"
           >
-            Get in Touch
+            {footer.ctaButtonLabel}
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M13 6l6 6-6 6"/>
             </svg>
@@ -51,17 +51,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <p className="font-sans text-[24px] font-semibold text-[#F7F2EC] mb-3">
-              Dada <span className="text-[#5B9BD5]">Emmanuel</span>
+              {profile.name}
             </p>
             <p className="text-[13px] font-light text-[#F7F2EC]/45 leading-[1.75] max-w-[260px] mb-7">
-              Lead Frontend Developer specialising in React, Next.js, and design systems that scale. Based in Ibadan, Nigeria.
+              {footer.summary} Based in {contact.location}.
             </p>
             <div className="flex gap-2.5">
-              {[
-                { label: "GitHub", href: "https://github.com/Dada-em" },
-                { label: "Portfolio", href: "https://daa-ddf.netlify.app" },
-                { label: "Email", href: "mailto:dadaoluwawamiri@gmail.com" },
-              ].map((s) => (
+              {socialLinks.map((s) => (
                 <Link
                   key={s.label}
                   href={s.href}
@@ -71,8 +67,8 @@ export default function Footer() {
                   className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/45 hover:border-[#5B9BD5] hover:text-[#5B9BD5] transition-colors"
                 >
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/>
-                    <path d="M22 6l-10 7L2 6"/>
+                    <path d="M14 4h6v6M20 4 10 14" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </Link>
               ))}
@@ -81,7 +77,7 @@ export default function Footer() {
 
           {/* Nav */}
           <div>
-            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">Navigation</p>
+            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">{footer.navigationHeading}</p>
             <ul className="flex flex-col gap-3">
               {navLinks.map((l) => (
                 <li key={l}>
@@ -102,12 +98,12 @@ export default function Footer() {
 
           {/* Capabilities */}
           <div>
-            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">Capabilities</p>
+            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">{footer.capabilitiesHeading}</p>
             <ul className="flex flex-col gap-3">
-              {capabilities.map((s) => (
-                <li key={s}>
+              {capabilities.map((capability) => (
+                <li key={capability.id}>
                   <Link href="/#services" className="text-[13px] font-light text-[#F7F2EC]/50 hover:text-[#F7F2EC] transition-colors">
-                    {s}
+                    {capability.title}
                   </Link>
                 </li>
               ))}
@@ -116,11 +112,11 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">Contact</p>
+            <p className="text-[11px] font-semibold tracking-[.2em] uppercase text-[#5B9BD5] mb-5">{footer.contactHeading}</p>
             {[
-              { label: "Email", val: "dadaoluwawamiri@gmail.com" },
-              { label: "Phone", val: "+234 901 434 5902" },
-              { label: "Location", val: "Ibadan, Nigeria" },
+              { label: "Email", val: contact.email },
+              { label: "Phone", val: contact.phone },
+              { label: "Location", val: contact.location },
             ].map((c) => (
               <div key={c.label} className="mb-4">
                 <p className="text-[10px] tracking-[.14em] uppercase text-white/25 mb-0.5">{c.label}</p>
@@ -134,7 +130,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/[.05] pt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[12px] text-white/25">
-            © 2026 <span className="text-[#5B9BD5]">Dada Emmanuel Oluwawamiri</span>. All rights reserved.
+            © {footer.copyrightYear} <span className="text-[#5B9BD5]">{footer.copyrightName}</span>. All rights reserved.
           </p>
         </div>
 

@@ -3,39 +3,36 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import type { SiteContent } from "@/sanity/content";
 
-const contactMethods = [
-  {
-    id: "email",
-    label: "Email",
-    value: "dadaoluwawamiri@gmail.com",
-    href: "mailto:dadaoluwawamiri@gmail.com",
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
-  },
-  {
-    id: "phone",
-    label: "Phone",
-    value: "+234 901 434 5902",
-    href: "tel:+2349014345902",
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-      </svg>
-    ),
-  },
-];
-
-const socialLinks = [
-  { label: "GitHub", href: "https://github.com/Dada-em" },
-];
-
-export default function ContactSection() {
+export default function ContactSection({ content }: { content: SiteContent }) {
+  const { contact } = content;
   const [copied, setCopied] = useState<string | null>(null);
+  const contactMethods = [
+    {
+      id: "email",
+      label: "Email",
+      value: contact.email,
+      href: `mailto:${contact.email}`,
+      icon: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      ),
+    },
+    {
+      id: "phone",
+      label: "Phone",
+      value: contact.phone,
+      href: `tel:${contact.phone.replace(/[^\d+]/g, "")}`,
+      icon: (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      ),
+    },
+  ];
 
   const handleCopy = async (e: React.MouseEvent, text: string, id: string) => {
     e.preventDefault();
@@ -63,15 +60,17 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
         >
           <div className="text-[13px] font-semibold tracking-[0.18em] uppercase text-[#5B9BD5] mb-4">
-            Get in Touch
+            {contact.eyebrow}
           </div>
           <h2 className="font-sans text-[clamp(32px,5vw,48px)] font-semibold text-stone-900 leading-[1.12] mb-5 tracking-tight">
-            Let's start a{" "}
-            <span className="text-[#5B9BD5]">conversation</span>
+            {contact.headingPrefix}{" "}
+            <span className="text-[#5B9BD5]">{contact.headingAccent}</span>
           </h2>
           <p className="font-sans text-[15px] sm:text-[16px] font-light text-stone-600 leading-[1.85]">
-            Open to full-time roles, contract work, and teams that care about
-            craft as much as velocity. I respond within 24 hours.
+            {contact.description}
+          </p>
+          <p className="text-[12px] text-stone-500 mt-3 font-light">
+            {contact.responseTime}
           </p>
         </motion.header>
 
@@ -137,10 +136,10 @@ export default function ContactSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="text-[11px] font-semibold tracking-[.18em] uppercase text-stone-400 mb-4">
-            Also find me on
+            {contact.socialHeading}
           </p>
           <div className="flex items-center justify-center gap-3">
-            {socialLinks.map((link) => (
+            {contact.socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -168,7 +167,7 @@ export default function ContactSection() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="text-[12px] font-medium text-stone-600">
-              Available for new roles
+              {contact.availability}
             </span>
           </div>
         </motion.div>

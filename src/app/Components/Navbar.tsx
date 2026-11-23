@@ -22,10 +22,12 @@ const sectionThemes: Record<string, "light" | "dark"> = {
   footer: "light",
 };
 
-export default function Navbar() {
+export default function Navbar({ name }: { name: string }) {
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
+  const [firstName, ...nameParts] = name.trim().split(/\s+/);
+  const remainingName = nameParts.join(" ");
 
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -87,7 +89,7 @@ export default function Navbar() {
             isDarkText ? "text-stone-900" : "text-white"
           }`}
         >
-          Dada <span className="text-[#5B9BD5]">Emmanuel</span>
+          {firstName} {remainingName && <span className="text-[#5B9BD5]">{remainingName}</span>}
         </Link>
 
         <nav

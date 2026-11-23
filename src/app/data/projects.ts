@@ -9,7 +9,11 @@ export type Project = {
     tagline: string;
     desc: string;
     tags: string[];
-    hasImage: boolean;
+    hasImage?: boolean;
+    image?: string | null;
+    imageAlt?: string;
+    sortOrder?: number;
+    visible?: boolean;
     overview: string;
     challenge: string;
     approach: string[];
@@ -32,6 +36,9 @@ export type Project = {
       desc: "A lawyer-marketplace and legal-tech platform for the Nigerian legal market, built on Next.js App Router. Architected a six-layer lawyer verification system, real-time messaging with Socket.io and TanStack Query, and Paystack-integrated payment flows.",
       tags: ["Next.js", "Socket.io", "TanStack Query", "Paystack", "Playwright"],
       hasImage: true,
+      image: "/projects/tls.png",
+      imageAlt: "The Legal Space",
+      sortOrder: 1,
       overview:
         "TLS connects clients with verified lawyers across Nigeria. As one of four co-founders and the sole frontend lead, the architecture had to support anonymous-first user trust (clients messaging lawyers before revealing identity) while still guaranteeing every lawyer on the platform is real, licensed, and accountable.",
       challenge:
@@ -63,6 +70,9 @@ export type Project = {
       desc: "End-to-end artist platform - directory, releases, playlists, artist profiles, and onboarding plus an admin dashboard that replaced manual spreadsheet tracking for newsletter subscribers and artist applications.",
       tags: ["React", "Next.js", "Admin Dashboard", "Component Library"],
       hasImage: true,
+      image: "/projects/exodus.png",
+      imageAlt: "Exodus Music Group",
+      sortOrder: 2,
       overview:
         "Exodus Music Group needed a public-facing platform for artist discovery and an internal system to stop managing applications and subscribers by hand in spreadsheets. Both were owned end-to-end, from the artist directory a fan sees to the dashboard the label team uses daily.",
       challenge:
@@ -94,6 +104,9 @@ export type Project = {
       desc: "A responsive event platform covering creation, promotion, and ticketing workflows, with a companion admin dashboard for live event and content management for events in Lagos and not just events in Lagos, but events in other cities as well.",
       tags: ["React", "Next.js", "Responsive Design", "Event Ticketing"],
       hasImage: true,
+      image: "/projects/turnup-lagos.png",
+      imageAlt: "TurnUp Lagos",
+      sortOrder: 3,
       overview:
         "TurnUp Lagos gives event organizers a full workflow, creating an event, promoting it, and selling tickets while giving the ChakraTek team an admin layer to manage live events and content without engineering involvement for every change.",
       challenge:
@@ -125,6 +138,9 @@ export type Project = {
       desc: "A booking platform with real-time slot availability, multi-step form validation, and serverless email confirmation with graceful failure handling, fully covered by Playwright tests, including network mocking and localStorage assertions.",
       tags: ["React", "Tailwind CSS", "Playwright", "Form Validation"],
       hasImage: true,
+      image: "/projects/phoenixpath.png",
+      imageAlt: "Phoenixpath Mental Health",
+      sortOrder: 4,
       overview:
         "Phoenixpath is a booking platform for mental health services, where a failed booking or a confusing form isn't just a bad UX moment, it can be someone's one attempt at reaching out. That context shaped every decision here, especially around failure states.",
       challenge:

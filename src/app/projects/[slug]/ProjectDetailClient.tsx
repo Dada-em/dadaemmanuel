@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import type { Project } from "@/app/data/projects";
 import Image from "next/image";
 import Navbar from "@/app/Components/Navbar";
+import type { SiteContent } from "@/sanity/content";
 
 const statusColor: Record<Project["status"], string> = {
   Live: "bg-emerald-600/90 text-white",
@@ -13,10 +14,16 @@ const statusColor: Record<Project["status"], string> = {
   Completed: "bg-stone-600/90 text-white",
 };
 
-export default function ProjectDetailClient({ project }: { project: Project }) {
+export default function ProjectDetailClient({
+  project,
+  content,
+}: {
+  project: Project;
+  content: SiteContent;
+}) {
   return (
     <>
-      <Navbar />
+      <Navbar name={content.profile.name} />
 
       {/* Header */}
       <section className="pt-36 pb-14 sm:pt-40 sm:pb-16 border-b border-stone-900/5">

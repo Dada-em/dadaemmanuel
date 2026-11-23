@@ -1,24 +1,47 @@
 // app/projects/[slug]/page.tsx
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { projects, getProjectById } from "@/app/data/projects";
 import ProjectDetailClient from "./ProjectDetailClient";
+import { getProjects, getProjectBySlug, getSiteContent } from "@/sanity/lib/queries";
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.id }));
+type ProjectPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.id }));
 }
 
-export default async function ProjectDetailPage({
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectById(slug);
+  const project = await getProjectBySlug(slug);
+  if (!project) return {};
+
+  return {
+    title: project.title,
+    description: project.desc,
+    openGraph: {
+      title: project.title,
+      description: project.desc,
+      type: "article",
+    },
+  };
+}
+
+export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const [project, content] = await Promise.all([
+    getProjectBySlug(slug),
+    getSiteContent(),
+  ]);
   if (!project) notFound();
 
   return (
     <main className="bg-[#FBF6EE] min-h-screen">
-      <ProjectDetailClient project={project} />
+      <ProjectDetailClient project={project} content={content} />
     </main>
   );
 }
