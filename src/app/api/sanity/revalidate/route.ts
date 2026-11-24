@@ -4,7 +4,8 @@ import { parseBody } from "next-sanity/webhook";
 import { SANITY_CONTENT_TAG } from "@/sanity/lib/live";
 
 export async function POST(request: NextRequest) {
-  const secret = process.env.SANITY_REVALIDATE_SECRET;
+  const secretName = "SANITY_REVALIDATE_SECRET";
+  const secret = process.env[secretName];
   if (!secret) {
     return new Response("Webhook secret is not configured", { status: 500 });
   }
