@@ -42,6 +42,11 @@ published; matching documents replace the fallback, and **Show on portfolio**
 controls visibility. Configure Sanity CORS origins for the local and deployed
 website URLs so the Studio and live content updates can connect.
 
+For production, also configure the signed Sanity cache-invalidation webhook
+described in [SANITY_INTEGRATION.md](./SANITY_INTEGRATION.md#production-cache-updates).
+This ensures new visitors receive published changes even if nobody was browsing
+the site when the content was published.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

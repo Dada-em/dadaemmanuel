@@ -5,7 +5,7 @@ import {
   normalizeSiteContent,
   type SiteContent,
 } from "../content";
-import { sanityFetch } from "./live";
+import { SANITY_CONTENT_TAG, sanityFetch } from "./live";
 
 const PROJECT_FIELDS = /* groq */ `
   _id,
@@ -123,6 +123,7 @@ async function fetchSanity<T>(
     params,
     perspective: "published",
     stega: false,
+    tags: [SANITY_CONTENT_TAG],
   });
 
   return data as T;

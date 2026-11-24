@@ -54,6 +54,7 @@ The main content flow is:
 4. Fetched values are normalized against default local content.
 5. Next.js passes the normalized content to interactive or presentational components.
 6. `SanityLive` listens for published content changes and refreshes the site.
+7. A signed Sanity webhook invalidates the server-side content cache, including when nobody is browsing at publish time.
 
 ## Editable Sanity Content
 
@@ -226,6 +227,17 @@ For a private or token-authenticated read setup, the optional server-side variab
 The read token must not use the `NEXT_PUBLIC_` prefix.
 
 Sanity CORS settings must include the local website origin and every deployed website origin that needs to use Live Content API or Studio preview features.
+
+## Production cache updates
+
+`SanityLive` updates pages while a visitor is connected. For reliable updates when nobody is browsing during a publish, configure a Sanity webhook to invalidate the Next.js cache:
+
+1. Add `SANITY_REVALIDATE_SECRET` to the Netlify site environment variables. Generate a strong random secret and keep it private.
+2. In Sanity Manage, create a webhook pointing to `https://<your-site>/api/sanity/revalidate` and use the same secret.
+3. Filter the webhook to published `siteContent` and `project` documents, and trigger it on create, update, and delete.
+4. Deploy the site once after adding the route and environment variable.
+
+The endpoint verifies Sanity's request signature and uses `revalidateTag` to refresh the content cache on the next request. Do not expose the secret in a `NEXT_PUBLIC_` variable.
 
 ## Validation Performed
 
